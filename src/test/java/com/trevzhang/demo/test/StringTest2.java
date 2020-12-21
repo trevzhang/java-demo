@@ -2,19 +2,22 @@ package com.trevzhang.demo.test;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.Test;
 
 /**
  * 验证java8后 字符串常量池在堆中
+ * <p>
+ * {@code -XX:MaxMetaspaceSize=10M} 可以限定元空间为10M {@code -Xmx10m -Xms10m  -XX:-UseGCOverheadLimit}
+ * 可以限定堆大小为10M
  *
- * {@code -XX:MaxMetaspaceSize=10M} 可以限定元空间为10M
- * {@code -Xmx10m -Xms10m  -XX:-UseGCOverheadLimit} 可以限定堆大小为10M
- * @link https://blog.csdn.net/weixin_38106322/article/details/108741864
  * @author Trevor Zhang
+ * @link https://blog.csdn.net/weixin_38106322/article/details/108741864
  * @since 2020/12/10
  */
 public class StringTest2 {
 
-    public static void main(String[] args) {
+    @Test
+    public void testGC(String[] args) {
         //保持对象引用，防止被GC
         Set<String> set = new HashSet<String>();
         long i = 0;
