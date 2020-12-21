@@ -1,5 +1,7 @@
 package com.trevzhang.demo.test;
 
+import org.junit.Test;
+
 /**
  * @author Trevor Zhang
  * @since 2020/11/25
