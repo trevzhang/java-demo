@@ -17,7 +17,7 @@ import org.junit.Test;
 public class StringTest2 {
 
     @Test
-    public void testGC(String[] args) {
+    public void testGC() {
         //保持对象引用，防止被GC
         Set<String> set = new HashSet<String>();
         long i = 0;
