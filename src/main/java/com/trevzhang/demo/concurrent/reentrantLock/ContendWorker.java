@@ -21,8 +21,8 @@ public class ContendWorker implements Runnable {
     @Override
     public void run() {
         System.out.println(Thread.currentThread().getName() + ": trying lock...");
-        lock.lock();
         System.out.println(Thread.currentThread().getName() + ": locked!");
+        lock.lock();
         try {
             TimeUnit.SECONDS.sleep(3);
             System.out.println(Thread.currentThread().getName() + ": releasing lock...");
