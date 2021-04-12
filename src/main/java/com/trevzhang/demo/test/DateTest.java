@@ -8,7 +8,13 @@ import java.util.Date;
  */
 public class DateTest {
     public static void main(String[] args) {
-        String str = "null";
-        System.out.println(str.equals(null));
+        int i, j;
+        i = 3100;
+        j = 3300;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int k = i; k < j; k++) {
+            stringBuilder.append(k).append(",");
+        }
+        System.out.println(stringBuilder.toString());
     }
 }
