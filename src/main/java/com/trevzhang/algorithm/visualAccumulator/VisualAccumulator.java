@@ -27,6 +27,5 @@ public class VisualAccumulator {
         list.add(bean);
         list.add(bean1);
         list.add(bean2);
-        System.out.println("test");
     }
 }
