@@ -24,4 +24,11 @@ public class StringTest {
         String a = "abcdefg";
         System.out.println(a.charAt(1));
     }
+
+    @Test
+    public void test03() {
+        String str = null;
+        String str1 = "参数为空：";
+        System.out.println(str1 + str);
+    }
 }
