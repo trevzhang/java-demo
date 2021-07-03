@@ -155,12 +155,13 @@ public class SnowflakeUtils {
 
 
     public static void main(String[] args) {
-        Set ids = new HashSet();
+        Set<Long> ids = new HashSet();
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 3000000; i++) {
+        for (int i = 0; i < 30; i++) {
             ids.add(genId());
         }
         long end = System.currentTimeMillis();
+        ids.forEach(System.out::println);
         System.out.println("共生成id[" + ids.size() + "]个，花费时间[" + (end - start) + "]毫秒");
     }
 }
