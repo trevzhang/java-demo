@@ -1,6 +1,7 @@
 package com.trevzhang.demo.test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import org.junit.Test;
 
@@ -11,6 +12,25 @@ import org.junit.Test;
  * @since 2020/12/8
  */
 public class BigDecimalTest {
+    /**
+     * 转百分比展示
+     *
+     * @param value
+     * @return
+     */
+    private static String toRate(BigDecimal value) {
+        return value.multiply(new BigDecimal("100")).setScale(2, RoundingMode.HALF_UP) + "%";
+    }
+
+    @Test
+    public void testRate() {
+        BigDecimal value = new BigDecimal("0.0972");
+        BigDecimal value1 = new BigDecimal("0.9972");
+        BigDecimal value2 = new BigDecimal("0.00721");
+        System.out.println(toRate(value));
+        System.out.println(toRate(value1));
+        System.out.println(toRate(value2));
+    }
 
     /**
      * 测试舍入
