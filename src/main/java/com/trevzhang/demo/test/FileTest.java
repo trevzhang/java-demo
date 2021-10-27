@@ -15,17 +15,45 @@ public class FileTest {
 
     public static void main(String[] args) throws IOException {
         File file = new File("/Users/zcg/Pictures/archieve/IMG_0668.MOV");
-        byte[] bytes = getBytesFromFile(file);
-        File outFile = new File("/Users/zcg/Pictures/" + UUID.randomUUID().toString() + ".MOV");
+        FileInputStream fis = new FileInputStream(file);
+        byte[] bytes = getBytesFromInputStream(fis);
+
+        long start = System.currentTimeMillis();
+        File outFile = new File("/Users/zcg/Pictures/" + UUID.randomUUID() + ".MOV");
         FileOutputStream fos = new FileOutputStream(outFile);
         fos.write(bytes);
+        fos.close();
+
+        System.out.println("write time = " + (System.currentTimeMillis() - start) + "ms");
     }
 
-    // 返回一个byte数组
+    /**
+     * 从inputStream获取字节数组
+     *
+     * @param input
+     * @return
+     * @throws IOException
+     */
+    public static byte[] getBytesFromInputStream(InputStream input) throws IOException {
+        long start = System.currentTimeMillis();
+        byte[] bytes = new byte[input.available()];
+        int size = input.read(bytes);
+        input.close();
+        System.out.println("length = " + size + ", read time = " + (System.currentTimeMillis() - start) + "ms");
+        return bytes;
+    }
+
+    /**
+     * 从file获取文件数组
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
     public static byte[] getBytesFromFile(File file) throws IOException {
         InputStream is = new FileInputStream(file);// 获取文件大小
         long lengths = file.length();
-        System.out.println("lengths = " + lengths);
+        System.out.println("length = " + lengths);
         if (lengths > Integer.MAX_VALUE) {
             // 文件太大，无法读取
             throw new IOException("File is to large " + file.getName());
