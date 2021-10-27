@@ -2,8 +2,11 @@ package com.trevzhang.demo.test;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 /**
  * @author zhangchunguang.zcg
@@ -12,10 +15,30 @@ import java.io.InputStream;
 public class FileTest {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        File file = new File("/Users/zcg/Pictures/archieve/1.sketch");
-        FileInputStream fis = new FileInputStream(file);
-        byte[] bytes = getBytesFromInputStream(fis);
-        byte[] bytes1 = getBytesFromFile(file);
+        File file = new File("/Users/zcg/Pictures/1.jpeg");
+        File outFile = new File("/Users/zcg/Pictures/" + UUID.randomUUID() + ".jpeg");
+        copyFile(file, outFile);
+    }
+
+    /**
+     * 用1024byte缓冲区的文件流进行文件拷贝
+     *
+     * @param sourceFile
+     * @param targetFile
+     * @throws IOException
+     */
+    public static void copyFile(File sourceFile, File targetFile) throws IOException {
+        FileInputStream fis = new FileInputStream(sourceFile);
+        FileOutputStream fos = new FileOutputStream(targetFile);
+        System.out.println("length: " + fis.available() + " Bytes");
+        byte[] buffer = new byte[1024];
+        int offset = 0;
+        while ((offset = fis.read(buffer)) != -1) {
+            System.out.println("offset: " + offset);
+            fos.write(buffer, 0, offset);
+        }
+        fis.close();
+        fos.close();
     }
 
     /**
