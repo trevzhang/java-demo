@@ -1,7 +1,10 @@
 package com.trevzhang.demo.test;
 
 import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
+import com.trevzhang.demo.test.StreamDemo.Bean;
 import java.util.regex.Pattern;
+import org.springframework.beans.BeanUtils;
 
 /**
  * @author zhangchunguang.zcg
@@ -19,5 +22,16 @@ public class RegexTest {
         String certName = "张春光·慕斯";
         boolean isCertNameMatch = Pattern.matches(certNameRegex, certName);
         System.out.println("isCertNameMatch: "+isCertNameMatch);
+
+        String phoneRegex = "^(([0-9]{3,4}-)?[0-9]{7,8}|(1[3456789]\\d{9}))$";
+        String phone = "19901010101";
+        boolean isPhoneMatch = Pattern.matches(phoneRegex, phone);
+        System.out.println("isPhoneMatch: " + isPhoneMatch);
+
+        String userNameRegex = "^[A-Za-z0-9_\\-\\u4e00-\\u9fa5]+$";
+        String userName = "chin627$";
+        boolean isUserNameMatch = Pattern.matches(userNameRegex, userName);
+        System.out.println("isUserNameMatch: " + isUserNameMatch);
+
     }
 }
