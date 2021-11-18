@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /**
  * @author zhangchunguang.zcg
- * @since 2021/10/27 5:26 ÏÂÎç
+ * @since 2021/10/27 5:26 ä¸‹åˆ
  */
 public class FileTest {
 
@@ -21,7 +21,7 @@ public class FileTest {
     }
 
     /**
-     * ÓÃ1024byte»º³åÇøµÄÎÄ¼şÁ÷½øĞĞÎÄ¼ş¿½±´
+     * ç”¨1024byteç¼“å†²åŒºçš„æ–‡ä»¶æµè¿›è¡Œæ–‡ä»¶æ‹·è´
      *
      * @param sourceFile
      * @param targetFile
@@ -42,7 +42,7 @@ public class FileTest {
     }
 
     /**
-     * ´ÓinputStream»ñÈ¡×Ö½ÚÊı×é
+     * ä»inputStreamè·å–å­—èŠ‚æ•°ç»„
      *
      * @param input
      * @return
@@ -52,17 +52,17 @@ public class FileTest {
         long start = System.currentTimeMillis();
         int length = input.available();
         if (length > Integer.MAX_VALUE) {
-            // ÎÄ¼şÌ«´ó£¬ÎŞ·¨¶ÁÈ¡
+            // æ–‡ä»¶å¤ªå¤§ï¼Œæ— æ³•è¯»å–
             throw new IOException("File is to large");
         }
-        // ´´½¨Ò»¸öÊı¾İÀ´±£´æÎÄ¼şÊı¾İ
-        byte[] bytes = new byte[(int) length];// ¶ÁÈ¡Êı¾İµ½byteÊı×éÖĞ
+        // åˆ›å»ºä¸€ä¸ªæ•°æ®æ¥ä¿å­˜æ–‡ä»¶æ•°æ®
+        byte[] bytes = new byte[(int) length];// è¯»å–æ•°æ®åˆ°byteæ•°ç»„ä¸­
         int offset = 0;
         int numRead = 0;
         while (offset < bytes.length && (numRead = input.read(bytes, offset, bytes.length - offset)) >= 0) {
             offset += numRead;
         }
-        // È·±£ËùÓĞÊı¾İ¾ù±»¶ÁÈ¡
+        // ç¡®ä¿æ‰€æœ‰æ•°æ®å‡è¢«è¯»å–
         if (offset < bytes.length) {
             throw new IOException("Could not completely read file");
         }
@@ -73,7 +73,7 @@ public class FileTest {
     }
 
     /**
-     * ´Ófile»ñÈ¡ÎÄ¼şÊı×é
+     * ä»fileè·å–æ–‡ä»¶æ•°ç»„
      *
      * @param file
      * @return
@@ -81,20 +81,20 @@ public class FileTest {
      */
     public static byte[] getBytesFromFile(File file) throws IOException {
         long start = System.currentTimeMillis();
-        InputStream is = new FileInputStream(file);// »ñÈ¡ÎÄ¼ş´óĞ¡
+        InputStream is = new FileInputStream(file);// è·å–æ–‡ä»¶å¤§å°
         long lengths = file.length();
         if (lengths > Integer.MAX_VALUE) {
-            // ÎÄ¼şÌ«´ó£¬ÎŞ·¨¶ÁÈ¡
+            // æ–‡ä»¶å¤ªå¤§ï¼Œæ— æ³•è¯»å–
             throw new IOException("File is to large " + file.getName());
         }
-        // ´´½¨Ò»¸öÊı¾İÀ´±£´æÎÄ¼şÊı¾İ
-        byte[] bytes = new byte[(int) lengths];// ¶ÁÈ¡Êı¾İµ½byteÊı×éÖĞ
+        // åˆ›å»ºä¸€ä¸ªæ•°æ®æ¥ä¿å­˜æ–‡ä»¶æ•°æ®
+        byte[] bytes = new byte[(int) lengths];// è¯»å–æ•°æ®åˆ°byteæ•°ç»„ä¸­
         int offset = 0;
         int numRead = 0;
         while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
             offset += numRead;
         }
-        // È·±£ËùÓĞÊı¾İ¾ù±»¶ÁÈ¡
+        // ç¡®ä¿æ‰€æœ‰æ•°æ®å‡è¢«è¯»å–
         if (offset < bytes.length) {
             throw new IOException("Could not completely read file " + file.getName());
         }
