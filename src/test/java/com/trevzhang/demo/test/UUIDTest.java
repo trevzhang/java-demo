@@ -9,15 +9,8 @@ import java.util.UUID;
  */
 public class UUIDTest {
     private static final String STR_FORMAT = "000000000000";
-    public static String haoAddOne(String liuShuiHao){
-        Integer intHao = Integer.parseInt(liuShuiHao);
-        intHao++;
-        DecimalFormat df = new DecimalFormat(STR_FORMAT);
-        return df.format(intHao);
-    }
+
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            System.out.println(haoAddOne(String.valueOf(i)));
-        }
+        System.out.println(UUID.randomUUID().toString());
     }
 }
