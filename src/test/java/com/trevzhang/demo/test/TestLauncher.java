@@ -2,6 +2,7 @@ package com.trevzhang.demo.test;
 
 /**
  * 测试Launcher加载路径
+ * https://blog.csdn.net/briblue/article/details/54973413
  * @see sun.misc.Launcher
  * @author zhangchunguang.zcg
  * @since 2022/3/7 10:28 AM
