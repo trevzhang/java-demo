@@ -17,23 +17,23 @@ import java.util.Map;
  */
 public class RSAUtil {
     /**
-     * ÀàĞÍ
+     * ç±»å‹
      */
     public static final String ENCRYPT_TYPE = "RSA";
     /**
-     * »ñÈ¡¹«Ô¿µÄkey
+     * è·å–å…¬é’¥çš„key
      */
     public static final String PUBLIC_KEY = "RSAPublicKey";
     /**
-     * »ñÈ¡Ë½Ô¿µÄkey
+     * è·å–ç§é’¥çš„key
      */
     public static final String PRIVATE_KEY = "RSAPrivateKey";
     /**
-     * ¹«Ô¿¼ÓÃÜ
+     * å…¬é’¥åŠ å¯†
      *
-     * @param content ´ı¼ÓÃÜµÄÃ÷ÎÄ
-     * @param publicKey ¹«Ô¿
-     * @return ¼ÓÃÜºóµÄÃÜÎÄ
+     * @param content å¾…åŠ å¯†çš„æ˜æ–‡
+     * @param publicKey å…¬é’¥
+     * @return åŠ å¯†åçš„å¯†æ–‡
      */
     public static String encrypt(String content, PublicKey publicKey) {
         try {
@@ -46,11 +46,11 @@ public class RSAUtil {
     }
 
     /**
-     * ¹«Ô¿¼ÓÃÜ
+     * å…¬é’¥åŠ å¯†
      *
-     * @param content ´ı¼ÓÃÜµÄÃ÷ÎÄ
-     * @param publicKey ¹«Ô¿
-     * @return ¼ÓÃÜºóµÄÃÜÎÄ
+     * @param content å¾…åŠ å¯†çš„æ˜æ–‡
+     * @param publicKey å…¬é’¥
+     * @return åŠ å¯†åçš„å¯†æ–‡
      */
     public static String encrypt(String content, String publicKey) {
         try {
@@ -62,13 +62,29 @@ public class RSAUtil {
         return null;
     }
 
+    /**
+     * ç§é’¥åŠ å¯†
+     *
+     * @param content å¾…åŠ å¯†çš„æ˜æ–‡
+     * @param privateKey ç§é’¥
+     * @return åŠ å¯†åçš„å¯†æ–‡
+     */
+    public static String encryptByPrivateKey(String content, String privateKey) {
+        try {
+            RSA rsa = new RSA(privateKey, null);
+            return rsa.encryptBase64(content, KeyType.PrivateKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
-     * Ë½Ô¿½âÃÜ
+     * ç§é’¥è§£å¯†
      *
-     * @param content ´ı½âÃÜµÄÃÜÎÄ
-     * @param privateKey Ë½Ô¿
-     * @return ½âÃÜºóµÄÃ÷ÎÄ
+     * @param content å¾…è§£å¯†çš„å¯†æ–‡
+     * @param privateKey ç§é’¥
+     * @return è§£å¯†åçš„æ˜æ–‡
      */
     public static String decrypt(String content, PrivateKey privateKey) {
         try {
@@ -81,11 +97,11 @@ public class RSAUtil {
     }
 
     /**
-     * Ë½Ô¿½âÃÜ
+     * ç§é’¥è§£å¯†
      *
-     * @param content ´ı½âÃÜµÄÃÜÎÄ
-     * @param privateKey Ë½Ô¿
-     * @return ½âÃÜºóµÄÃ÷ÎÄ
+     * @param content å¾…è§£å¯†çš„å¯†æ–‡
+     * @param privateKey ç§é’¥
+     * @return è§£å¯†åçš„æ˜æ–‡
      */
     public static String decrypt(String content, String privateKey) {
         try {
@@ -98,9 +114,26 @@ public class RSAUtil {
     }
 
     /**
-     * »ñÈ¡¹«Ë½Ô¿-Çë»ñÈ¡Ò»´Îºó±£´æ¹«Ë½Ô¿Ê¹ÓÃ
+     * å…¬é’¥è§£å¯†
      *
-     * @return ¹«Ô¿¡¢Ë½Ô¿
+     * @param content å¾…è§£å¯†çš„å¯†æ–‡
+     * @param publicKey å…¬é’¥
+     * @return è§£å¯†åçš„æ˜æ–‡
+     */
+    public static String decryptByPublicKey(String content, String publicKey) {
+        try {
+            RSA rsa = new RSA(null, publicKey);
+            return rsa.decryptStr(content, KeyType.PublicKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * è·å–å…¬ç§é’¥-è¯·è·å–ä¸€æ¬¡åä¿å­˜å…¬ç§é’¥ä½¿ç”¨
+     *
+     * @return å…¬é’¥ã€ç§é’¥
      */
     public static Map<String, String> generateKeyPair() {
         try {
@@ -110,7 +143,7 @@ public class RSAUtil {
 
             byte[] pubEncBytes = publicKey.getEncoded();
             byte[] priEncBytes = privateKey.getEncoded();
-            // °Ñ¹«Ô¿ºÍË½Ô¿×ª»»ÎªBase64¸ñÊ½
+            // æŠŠå…¬é’¥å’Œç§é’¥è½¬æ¢ä¸ºBase64æ ¼å¼
             String pubEncBase64 = new BASE64Encoder().encode(pubEncBytes);
             String priEncBase64 = new BASE64Encoder().encode(priEncBytes);
 

@@ -10,7 +10,7 @@ import java.security.PrivateKey;
 import java.security.SecureRandom;
 
 /**
- * ¼ÓÃÜ¹¤¾ßÀà
+ * åŠ å¯†å·¥å…·ç±»
  * @author zhangchunguang.zcg
  * @since 2022/7/21 8:58 PM
  */
@@ -18,7 +18,7 @@ import java.security.SecureRandom;
 public class RSAUtils {
 
     /**
-     * * Éú³ÉÃÜÔ¿¶Ô *
+     * * ç”Ÿæˆå¯†é’¥å¯¹ *
      *
      * @return KeyPair *
      * @throws Exception
@@ -26,7 +26,7 @@ public class RSAUtils {
     public static KeyPair generateKeyPair() throws Exception {
         try {
             KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA", new BouncyCastleProvider());
-            //´óĞ¡
+            //å¤§å°
             final int KEY_SIZE = 1024;
             keyPairGen.initialize(KEY_SIZE, new SecureRandom());
             KeyPair keyPair = keyPairGen.generateKeyPair();
@@ -37,11 +37,11 @@ public class RSAUtils {
     }
 
     /**
-     * * ½âÃÜ *
+     * * è§£å¯† *
      *
-     * @param privateKey ½âÃÜµÄÃÜÔ¿ *
-     * @param raw        ÒÑ¾­¼ÓÃÜµÄÊı¾İ *
-     * @return ½âÃÜºóµÄÃ÷ÎÄ *
+     * @param privateKey è§£å¯†çš„å¯†é’¥ *
+     * @param raw        å·²ç»åŠ å¯†çš„æ•°æ® *
+     * @return è§£å¯†åçš„æ˜æ–‡ *
      * @throws Exception
      */
     @SuppressWarnings("static-access")
@@ -63,7 +63,7 @@ public class RSAUtils {
     }
 
     /**
-     * ½âÃÜ·½·¨
+     * è§£å¯†æ–¹æ³•
      *
      * @param paramStr
      * @param privateKey
@@ -75,13 +75,13 @@ public class RSAUtils {
         byte[] de_result = decrypt(privateKey, en_result);
         StringBuffer sb = new StringBuffer();
         sb.append(new String(de_result, "UTF-8"));
-        //·µ»Ø½âÃÜµÄ×Ö·û´®
+        //è¿”å›è§£å¯†çš„å­—ç¬¦ä¸²
         return sb.reverse().toString();
     }
 
 
     /**
-     * 16½øÖÆ To byte[]
+     * 16è¿›åˆ¶ To byte[]
      *
      * @param hexString
      * @return byte[]
