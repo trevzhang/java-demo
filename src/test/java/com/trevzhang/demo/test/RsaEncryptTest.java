@@ -28,6 +28,7 @@ public class RsaEncryptTest {
         System.out.println("明文：\n" + password + "\n");
 
         for (int i = 1; i <= 3; i++) {
+            System.out.println("===============");
             System.out.printf("第%d次\n", i);
             String encryptStr = RSAUtil.encrypt(password, publicKey);
             System.out.println("公钥加密后：\n" + encryptStr + "\n");
