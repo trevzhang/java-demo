@@ -21,6 +21,15 @@ public class BigDecimalTest {
     private static String toRate(BigDecimal value) {
         return value.multiply(new BigDecimal("100")).setScale(2, RoundingMode.HALF_UP) + "%";
     }
+    @Test
+    public void testDivide() {
+        int a = 1030;
+        int b = 1024;
+        int result = a % b;
+        int res = a / b;
+        System.out.println("result: "+result);
+        System.out.println("res: "+res);
+    }
 
     @Test
     public void testRate() {
