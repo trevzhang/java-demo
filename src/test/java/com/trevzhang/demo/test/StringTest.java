@@ -1,5 +1,9 @@
 package com.trevzhang.demo.test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import org.junit.Test;
 
 /**
@@ -7,6 +11,14 @@ import org.junit.Test;
  * @since 2020/12/2
  */
 public class StringTest {
+
+    @Test
+    public void testStringArray() {
+        String originSellRanges = null;
+        String[] sellRanges = Optional.ofNullable(originSellRanges).orElse("").split(",");
+        List<String> sellRangeList = Arrays.asList(sellRanges);
+        System.out.println(sellRangeList);
+    }
 
     @Test
     public void test01() {
