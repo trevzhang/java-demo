@@ -12,6 +12,19 @@ import org.junit.Test;
  * @since 2020/12/8
  */
 public class BigDecimalTest {
+
+    /**
+     * 取余算数
+     */
+    @Test
+    public void testDivideAndRemainder2() {
+        BigDecimal a = new BigDecimal("226801000165723982337");
+        BigDecimal b = new BigDecimal(Long.MAX_VALUE);
+        BigDecimal[] result = a.divideAndRemainder(b);
+        for (BigDecimal bigDecimal : result) {
+            System.out.println(bigDecimal);
+        }
+    }
     /**
      * 转百分比展示
      *
