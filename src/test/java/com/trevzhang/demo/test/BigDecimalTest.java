@@ -13,6 +13,11 @@ import org.junit.Test;
  */
 public class BigDecimalTest {
 
+    @Test
+    public void testLongValue() {
+        BigDecimal a = new BigDecimal("11.9999999999");
+        System.out.println(a.longValue());
+    }
     /**
      * 取余算数
      */
