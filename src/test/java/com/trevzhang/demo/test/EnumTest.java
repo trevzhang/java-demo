@@ -8,6 +8,9 @@ import org.junit.Test;
  */
 public class EnumTest {
 
+    /**
+     * Enum.valueOf(Class,String) 返回指定枚举类型中匹配的枚举
+     */
     @Test
     public void testEnumValueOf() {
         AnimalEnum animalEnum = Enum.valueOf(AnimalEnum.class, "TIGER");
