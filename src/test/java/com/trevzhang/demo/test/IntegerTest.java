@@ -71,4 +71,13 @@ public class IntegerTest {
         Integer f = new Integer(1);
         System.out.println(e == f);//false}
     }
+
+    /**
+     * 打印Integer和Long的MAX_VALUE
+     */
+    @Test
+    public void testPrintIntegerMax() {
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Long.MAX_VALUE);
+    }
 }
