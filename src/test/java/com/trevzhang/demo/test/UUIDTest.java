@@ -2,6 +2,7 @@ package com.trevzhang.demo.test;
 
 import java.text.DecimalFormat;
 import java.util.UUID;
+import org.junit.Test;
 
 /**
  * @author 春火
@@ -12,5 +13,11 @@ public class UUIDTest {
 
     public static void main(String[] args) {
         System.out.println(UUID.randomUUID().toString());
+    }
+
+    @Test
+    public void testGenerate() {
+        String uuid = UUID.randomUUID().toString();
+        System.out.println(uuid);
     }
 }
