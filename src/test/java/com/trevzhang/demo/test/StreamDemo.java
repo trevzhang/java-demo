@@ -1,5 +1,6 @@
 package com.trevzhang.demo.test;
 
+import com.alibaba.fastjson.JSON;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,11 +8,36 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import org.junit.Test;
 
 /**
  * 探索stream的深层原理
  */
 public class StreamDemo extends HashMap {
+
+    @Test
+    public void test2() {
+        List<Bean> list = new ArrayList<>();
+        Bean<String> bean1 = new Bean<>();
+        bean1.setArg1("1");
+        list.add(bean1);
+
+        Bean<String> bean2 = new Bean<>();
+        bean2.setArg1("2");
+        list.add(bean2);
+
+        Bean<String> bean3 = new Bean<>();
+        bean3.setArg1("3");
+        list.add(bean3);
+
+        Bean<String> bean11 = new Bean<>();
+        bean11.setArg1("1");
+        list.add(bean11);
+
+        Map<Object, Bean> map1 = list.stream().collect(Collectors.toMap(
+            Bean::getArg1, Function.identity(), (existing, replacement) -> existing));
+        System.out.println(JSON.toJSONString(map1));
+    }
 
     @Override
     public Object putIfAbsent(Object key, Object value) {
@@ -19,7 +45,8 @@ public class StreamDemo extends HashMap {
         return super.putIfAbsent(key, value);
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test1() {
         StreamDemo demo = new StreamDemo();
         List<Bean> list = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
