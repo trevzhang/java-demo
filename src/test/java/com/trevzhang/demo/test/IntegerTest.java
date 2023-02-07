@@ -8,6 +8,14 @@ import org.junit.Test;
  */
 public class IntegerTest {
 
+    @Test
+    public void test1() {
+        // 1<<30 是java.util.HashMap的最大容量
+        int a = 1 << 30;
+        System.out.println("a: " + a);
+        System.out.println("int max: " + Integer.MAX_VALUE);
+    }
+
     public static void main(String[] args) {
 //        testIntegerCache();
 //        testInOutBox();
