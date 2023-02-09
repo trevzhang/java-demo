@@ -61,16 +61,6 @@ public class JSONTest {
     }
 
     @Test
-    public void testGetBoolean() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("canDawnBook", false);
-        System.out.println(jsonObject);
-
-        Boolean canDawnBook = jsonObject.getBoolean("canDawnBook");
-        System.out.println(canDawnBook);
-    }
-
-    @Test
     public void testJSONClassParse() {
         // @type为JSONObject，反序列化为Map<String,Object>成功
         String jsonStr1 = "{\"@type\":\"com.alibaba.fastjson.JSONObject\",\"signAlipayAgent\":false}";
