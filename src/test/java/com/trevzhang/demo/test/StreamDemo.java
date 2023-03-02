@@ -1,5 +1,7 @@
 package com.trevzhang.demo.test;
 
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +10,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.junit.Test;
 
 /**
@@ -62,6 +66,31 @@ public class StreamDemo extends HashMap {
 //        List<Bean> list1 = list.stream().filter(demo.distinctByKey(Bean::getArg1)).collect(Collectors.toList());
         List<Bean> list1 = list.parallelStream().filter(demo.distinctByKey(Bean::getArg1)).collect(Collectors.toList());
 //        list1.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSorted() {
+        // List<Integer> intList = new ArrayList<>();
+        // for (int i = 0; i < 20; i++) {
+        //     intList.add(RandomUtil.randomInt(20));
+        // }
+        // intList = intList.stream().sorted((a, b) -> a > b ? 1 : a == b ? 0 : -1).collect(Collectors.toList());
+        // System.out.println(intList);
+
+        List<BoolBean> boolBeans = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            BoolBean boolBean = new BoolBean(RandomUtil.randomBoolean(), RandomUtil.randomNumbers(2));
+            boolBeans.add(boolBean);
+        }
+        boolBeans = boolBeans.stream().sorted((a, b) -> a.getHighlight() ? -1 : b.getHighlight() ? 1 : 0).collect(Collectors.toList());
+        System.out.println(JSONUtil.toJsonPrettyStr(boolBeans));
+    }
+
+    @AllArgsConstructor
+    @Data
+    private static class BoolBean {
+        private Boolean highlight;
+        private String name;
     }
 
     /**
