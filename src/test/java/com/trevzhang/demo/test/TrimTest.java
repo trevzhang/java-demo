@@ -11,7 +11,7 @@ public class TrimTest {
 
     @Test
     public void testTrim() {
-        String testStr = " 泰国 ";
+        String testStr = "         泰     国                                                         ";
         String trimed = StringUtils.trim(testStr);
         System.out.println("begin{"+testStr+"}end");
         System.out.println("begin{"+trimed+"}end");
