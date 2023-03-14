@@ -3,7 +3,11 @@ package com.trevzhang.demo.test;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import com.trevzhang.demo.test.StreamDemo.Bean;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
+import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -33,5 +37,20 @@ public class RegexTest {
         boolean isUserNameMatch = Pattern.matches(userNameRegex, userName);
         System.out.println("isUserNameMatch: " + isUserNameMatch);
 
+    }
+
+    @Test
+    public void testDateFormat() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Pattern pattern = Pattern.compile("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}");
+        String a = "1996-06-27";
+        System.out.println(pattern.matcher(a).matches());
+        Date aDate = sdf.parse(a);
+        System.out.println(aDate);
+
+        String b = "1996-6-8";
+        System.out.println(pattern.matcher(b).matches());
+        Date bDate = sdf.parse(b);
+        System.out.println(bDate);
     }
 }
