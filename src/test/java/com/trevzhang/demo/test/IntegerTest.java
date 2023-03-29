@@ -16,10 +16,11 @@ public class IntegerTest {
         System.out.println("int max: " + Integer.MAX_VALUE);
     }
 
-    public static void main(String[] args) {
-//        testIntegerCache();
-//        testInOutBox();
-
+    @Test
+    public void test2() {
+        Long l = 1000000128139L;
+        Integer endCityId = l.intValue();
+        System.out.println("endCityId: "+endCityId);
     }
 
     //死锁
