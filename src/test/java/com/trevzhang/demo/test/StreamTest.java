@@ -1,8 +1,15 @@
 package com.trevzhang.demo.test;
 
 import cn.hutool.crypto.digest.DigestUtil;
+import com.alibaba.fastjson.JSON;
+import com.trevzhang.demo.test.StreamDemo.Bean;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import org.junit.Test;
 
 /**
  * CPU密集型 StreamAPI性能测试
@@ -11,6 +18,57 @@ import java.util.List;
  * @since 2020/11/6
  */
 public class StreamTest {
+
+    /**
+     * List做groupingBy后再复原回List测试
+     */
+    @Test
+    public void testFlatMap() {
+        List<Person> list = Arrays.asList(
+            new Person("Trevor", "26"),
+            new Person("Michael", "26"),
+            new Person("Kanda", "17"),
+            new Person("Catherine", "16"),
+            new Person("Persona", "888"),
+            new Person("Kyo", "18"),
+            new Person("Yukio", "12"),
+            new Person("Hikky", "18")
+        );
+        System.out.println(JSON.toJSONString(list));
+        Map<String, List<Person>> map = list.stream().collect(Collectors.groupingBy(Person::getAge));
+        System.out.println(JSON.toJSONString(map));
+        for (String age : map.keySet()) {
+            //do something
+        }
+        List<Person> personResultList = map.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+        System.out.println(JSON.toJSONString(personResultList));
+    }
+
+    private static class Person {
+        private String name;
+        private String age;
+
+        public Person(String name, String age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getAge() {
+            return age;
+        }
+
+        public void setAge(String age) {
+            this.age = age;
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         List<String> stringList = new ArrayList<>();
