@@ -3,6 +3,7 @@ package com.trevzhang.demo.test;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -12,6 +13,11 @@ import org.junit.Test;
  * @since 2023/3/29 20:37
  */
 public class ListTest {
+    @Test
+    public void test01() {
+        List<Integer> list = Arrays.asList(new Integer[3]);
+        System.out.println(list);
+    }
 
     @Test
     public void testSubList() {
