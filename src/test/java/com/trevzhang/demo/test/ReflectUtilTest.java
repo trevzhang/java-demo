@@ -32,9 +32,37 @@ public class ReflectUtilTest {
         }
     }
 
-    public void dumb() {
+    @Test
+    public void testInvokeMethod2() {
+        Method dumb = ReflectUtil.getMethodByName(ReflectUtilTest.class, "dumb");
+        Method dumbVoid = ReflectUtil.getMethodByName(ReflectUtilTest.class, "dumbVoid");
 
+        Class<?> dumbReturnType = dumb.getReturnType();
+        Class<?> dumbVoidReturnType = dumbVoid.getReturnType();
+
+        System.out.println(dumbReturnType == dumbVoidReturnType);
+        System.out.println(dumbReturnType.equals(dumbVoidReturnType));
     }
+
+    @Test
+    public void testInvokeMethod3() {
+        for (Method method : ReflectUtilTest.class.getDeclaredMethods()) {
+            if (method.getReturnType().equals(Void.TYPE)) {
+                // void - Class.getPrimitiveClass("void");
+                System.out.println("返回void的方法是: " + method.getName());
+            } else if (method.getReturnType().equals(Void.class)) {
+                // Void - Void.class
+                System.out.println("返回Void的方法是: " + method.getName());
+            } else if (method.getReturnType().equals(Integer.TYPE)) {
+                // int - Class.getPrimitiveClass("int");
+                System.out.println("返回int的方法是: " + method.getName());
+            }
+        }
+    }
+
+    public void dumb() {
+    }
+
     public Void dumbVoid() {
         return null;
     }
