@@ -15,4 +15,13 @@ public class Base64Test {
         String decodeStr = new String(decodeBytes);
         System.out.println(decodeStr);
     }
+
+    @Test
+    public void test2() {
+        String temp = "203.119.241.%s";
+        for (int i = 1; i <= 255; i++) {
+            String ip = String.format(temp, i);
+            System.out.println(ip);
+        }
+    }
 }
