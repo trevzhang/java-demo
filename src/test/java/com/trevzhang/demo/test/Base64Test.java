@@ -18,7 +18,7 @@ public class Base64Test {
 
     @Test
     public void test2() {
-        String temp = "203.119.241.%s";
+        String temp = "106.11.223.%s";
         for (int i = 1; i <= 255; i++) {
             String ip = String.format(temp, i);
             System.out.println(ip);
