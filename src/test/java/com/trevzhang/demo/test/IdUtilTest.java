@@ -24,4 +24,22 @@ public class IdUtilTest {
             System.out.printf("i=%d, snowflakeId=%d%n", i, snowflake2.nextId());
         }
     }
+
+    @Test
+    public void testFastUUID() {
+        String fastUUID = IdUtil.fastUUID();
+        System.out.println("fastUUID: " + fastUUID);
+
+        String fastSimpleUUID = IdUtil.fastSimpleUUID();
+        System.out.println("fastSimpleUUID: " + fastSimpleUUID);
+    }
+
+    @Test
+    public void testFastUUIDForTimer() {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            String fastSimpleUUID = IdUtil.fastSimpleUUID();
+        }
+        System.out.println("generated 10000 UUIDs, cost: " + (System.currentTimeMillis() - start) + " ms");
+    }
 }
