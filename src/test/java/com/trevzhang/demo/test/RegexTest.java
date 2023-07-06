@@ -6,6 +6,7 @@ import com.trevzhang.demo.test.StreamDemo.Bean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
@@ -16,7 +17,18 @@ import org.springframework.beans.BeanUtils;
  */
 public class RegexTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void testOssKey() {
+        Pattern PATTERN = Pattern.compile("axFiles/(\\w*)/(.*?)");
+        String key = "axFiles/ROUTE_FOREIGN_IMAGE/2023/07/06/65027239ca8448fb9772e4931d9339ed.jpeg";
+        Matcher matcher = PATTERN.matcher(key);
+        if (matcher.matches() && matcher.groupCount() > 1) {
+            System.out.println(matcher.group(1));
+        }
+    }
+
+    @Test
+    public void testPerson() {
         String certNoRegex = "^[1-9]\\d{5}(18|19|20)\\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$";
         String certNo = "410702199606270012";
         boolean isMatch = Pattern.matches(certNoRegex, certNo);
