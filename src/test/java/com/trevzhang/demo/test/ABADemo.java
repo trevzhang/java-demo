@@ -13,6 +13,7 @@ public class ABADemo {
     private static AtomicReference<Integer> atomicReference = new AtomicReference<>(100);
     private static AtomicStampedReference<Integer> stampedReference = new AtomicStampedReference<>(100, 1);
 //A
+    //B
     public static void main(String[] args) {
         System.out.println("===以下是ABA问题的产生===");
         new Thread(() -> {
