@@ -13,6 +13,15 @@ import org.junit.Test;
 public class StringTest {
 
     @Test
+    public void testListToString() {
+        List<String> strList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            strList.add("测试" + i);
+        }
+        System.out.println(String.valueOf(strList));
+    }
+
+    @Test
     public void testStringArray() {
         String originSellRanges = null;
         String[] sellRanges = Optional.ofNullable(originSellRanges).orElse("").split(",");
