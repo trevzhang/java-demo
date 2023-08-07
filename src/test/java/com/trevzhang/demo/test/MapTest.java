@@ -3,6 +3,7 @@ package com.trevzhang.demo.test;
 import com.google.common.collect.Sets;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import org.junit.Test;
@@ -12,6 +13,18 @@ import org.junit.Test;
  * @since 2023/5/22 17:50
  */
 public class MapTest {
+
+    @Test
+    public void testLinkedHashMap() {
+        Map<String, String> lMap = new LinkedHashMap<>();
+        lMap.put("东南亚", "东南亚");
+        lMap.put("欧洲", "欧洲");
+        lMap.put("澳洲", "澳洲");
+        lMap.put("中东非", "中东非");
+        lMap.put("大海岛", "大海岛");
+
+        System.out.println(lMap);
+    }
 
     @Test
     public void testComputeIfAbsent() {
