@@ -61,6 +61,36 @@ public class SimpleDateFormatTest {
     }
 
     @Test
+    public void testSynchronizedSdf() throws ExecutionException, InterruptedException {
+        // 创建线程池
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);
+        List<Future<String>> futures = new ArrayList<>();
+        // 执行 10 次时间格式化
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            // 线程池执行任务
+            Future<String> future = threadPool.submit(new Callable<String>() {
+                @Override
+                public String call() {
+                    // 创建时间对象
+                    Date date = new Date(finalI * 1000);
+                    // 时间格式化
+                    synchronized (sdf){
+                        return sdf.format(date);
+                    }
+                }
+            });
+            futures.add(future);
+        }
+        // 任务执行完之后关闭线程池
+        threadPool.shutdown();
+        for (Future<String> future : futures) {
+            String result = future.get();
+            System.out.println(result);
+        }
+    }
+
+    @Test
     public void testThreadLocalSdf() throws ExecutionException, InterruptedException {
         // 创建线程池
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
