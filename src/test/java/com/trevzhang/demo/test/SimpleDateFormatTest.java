@@ -1,10 +1,12 @@
 package com.trevzhang.demo.test;
 
+import cn.hutool.core.date.DateUtil;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -13,6 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 
 /**
@@ -24,6 +27,7 @@ import org.junit.Test;
 @Slf4j
 public class SimpleDateFormatTest {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
+    private static final SimpleDateFormat sdf_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     // 创建 ThreadLocal 对象，并设置默认值（new SimpleDateFormat）
     private static final ThreadLocal<SimpleDateFormat> sdfThreadLocal =
@@ -31,6 +35,14 @@ public class SimpleDateFormatTest {
 
     // JDK8新的日期格式化类，线程安全
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("mm:ss");
+
+    @Test
+    public void testDateCeiling() {
+        Date now = new Date();
+        Date ceiling = DateUtil.endOfDay(now);
+        System.out.println("now:" + sdf_date.format(now));
+        System.out.println("ceiling:" + sdf_date.format(ceiling));
+    }
 
     @Test
     public void testConcurrentSdf() throws ExecutionException, InterruptedException {
