@@ -13,6 +13,13 @@ import org.junit.Test;
 public class StringTest {
 
     @Test
+    public void testZHStringSize() {
+        String zh = "你好哈哈哈";
+        // 5
+        System.out.println(zh.length());
+    }
+
+    @Test
     public void testListToString() {
         List<String> strList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
