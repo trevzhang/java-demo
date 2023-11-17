@@ -3,6 +3,7 @@ package com.trevzhang.demo.struct;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -27,13 +28,13 @@ public class NodeAwakeDemo {
     private static void initNodes() throws InterruptedException {
         Node a = new Node("a");
 
-        Node b = new Node(Lists.newCopyOnWriteArrayList(Arrays.asList(a)), "b");
+        Node b = new Node(Lists.newArrayList(Collections.singletonList(a)), "b");
 
-        Node c = new Node(Lists.newCopyOnWriteArrayList(Arrays.asList(a)), "c");
+        Node c = new Node(Lists.newArrayList(Collections.singletonList(a)), "c");
 
-        Node d = new Node(Lists.newCopyOnWriteArrayList(Arrays.asList(b, c)), "d");
+        Node d = new Node(Lists.newArrayList(Arrays.asList(b, c)), "d");
 
-        nodes.addAll(Lists.newCopyOnWriteArrayList(Arrays.asList(a, b, c, d)));
+        nodes.addAll(Lists.newArrayList(Arrays.asList(a, b, c, d)));
     }
 
     public static class Node {
