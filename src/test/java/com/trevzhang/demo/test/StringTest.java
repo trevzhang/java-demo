@@ -59,4 +59,12 @@ public class StringTest {
         String str1 = "参数为空：";
         System.out.println(str1 + str);
     }
+
+    @Test
+    public void test04() {
+        String orderNo="123";
+        Integer gameBaseId = 321;
+        String formatted = String.format("http://example.com/pay_detail?order_no=%s&game_base_id=%s", orderNo, gameBaseId);
+        System.out.println(formatted);
+    }
 }
