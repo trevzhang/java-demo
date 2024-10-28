@@ -42,6 +42,7 @@ public class SignHelper {
     }
 
     public static void main(String[] args) {
+        String secretKey = "pHcNbNb4vtvn8HXT";
         String data = "area_id=0&brand_id=101&global_channel_id=1001&global_game_id=1000001&sign=7678f7381813af780950a958fe3ab382&timestamp=1729498917&uid=1234567&version=1";
         TreeMap<String, String> params = new TreeMap<>();
         String[] pairs = data.split("&");
@@ -51,9 +52,9 @@ public class SignHelper {
         }
 
         System.out.println("1、参数字典序排序: " + params.keySet().stream().reduce((k1, k2) -> k1 + "、" + k2).orElse(""));
-        String step2 = params.values().stream().reduce((v1, v2) -> v1 + " " + v2).orElse("");
+        String step2 = params.values().stream().reduce((v1, v2) -> v1 + " " + v2).orElse("") + " " + secretKey;
         System.out.println("2、排序后参数值拼接顺序: " + step2);
-        String sign = sign(params, "pHcNbNb4vtvn8HXT");
+        String sign = sign(params, secretKey);
         System.out.println("3、sign=md5(" + step2 + ")=" + sign);
     }
 
