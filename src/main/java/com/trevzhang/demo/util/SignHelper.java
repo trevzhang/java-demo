@@ -51,11 +51,23 @@ public class SignHelper {
             params.put(kv[0], kv[1]);
         }
 
-        System.out.println("1、参数字典序排序: " + params.keySet().stream().reduce((k1, k2) -> k1 + "、" + k2).orElse(""));
-        String step2 = params.values().stream().reduce((v1, v2) -> v1 + " " + v2).orElse("") + " " + secretKey;
-        System.out.println("2、排序后参数值拼接顺序: " + step2);
+        StringBuilder step1 = new StringBuilder();
+        StringBuilder step2 = new StringBuilder();
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if ("sign".equals(entry.getKey())) {
+                continue;
+            }
+            step1.append(entry.getKey()).append("、");
+            step2.append(entry.getValue()).append(" ");
+        }
+        String step1Str = step1.substring(0, step1.length() - 1);
+        String step2Str = step2.toString();
+        String step3Str = step2.append(secretKey).toString();
+
+        System.out.println("1、参数字典序排序: " + step1Str);
+        System.out.println("2、排序后参数值拼接顺序: " + step2Str);
         String sign = sign(params, secretKey);
-        System.out.println("3、sign=md5(" + step2 + ")=" + sign);
+        System.out.println("3、sign=md5(" + step3Str + ")=" + sign);
     }
 
 }
