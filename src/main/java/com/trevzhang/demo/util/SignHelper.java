@@ -42,8 +42,8 @@ public class SignHelper {
     }
 
     public static void main(String[] args) {
-        String secretKey = "pHcNbNb4vtvn8HXT";
-        String data = "area_id=0&brand_id=101&global_channel_id=1001&global_game_id=1000001&sign=7678f7381813af780950a958fe3ab382&timestamp=1729498917&uid=1234567&version=1";
+        String secretKey = "wgfykwenagycuf92zzuragjm7mxhvytt";
+        String data = "area_id=0&brand_id=101&global_channel_id=1001&global_game_id=1010001&timestamp=1730373550278&uid=2052462816608518&version=1&sign=edf2098022da5c7ddee7768eca12f32e";
         TreeMap<String, String> params = new TreeMap<>();
         String[] pairs = data.split("&");
         for (String pair : pairs) {
